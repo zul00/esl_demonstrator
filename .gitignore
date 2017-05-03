@@ -4,6 +4,7 @@
 *.qpf
 *.qsf
 *.qws
+*.rpt
 *.swp
 *.wlf
 *_lock
