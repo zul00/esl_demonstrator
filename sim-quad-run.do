@@ -1,12 +1,8 @@
-vsim -t ns work.QuadratureEncoder
-
-# Add signal
-add wave -position end sim:/quadratureencoder/ab
-apdd wave -position end sim:/quadratureencoder/ab_last
-add wave -position end sim:/quadratureencoder/ctr
-add wave -position end sim:/quadratureencoder/clk 
+restart
 
 # Force signal
+## reset
+force reset 1, 0 20 ns
 ## f_clock = 50 MHz clock
 force clk 0, 1 10 ns -repeat 20 ns
 ## encoder signal 2k pulses / rotation, assuming 1 rotation / second

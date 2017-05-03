@@ -3,8 +3,9 @@ USE ieee.std_logic_1164.all;
 
 ENTITY PulseWidthModulator IS
   PORT (
-         pulse : OUT std_logic;
-         clk : IN std_logic
+         clk : IN std_logic;
+         reset : IN std_logic;
+         pulse : OUT std_logic
        );
 END ENTITY;
 
