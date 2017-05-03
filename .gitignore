@@ -1,0 +1,15 @@
+*.bak
+*.mpf
+*.mti
+*.qpf
+*.qsf
+*.qws
+*.swp
+*.wlf
+*_lock
+db/*
+incremental_db/*
+output_files/*
+simulation/* 
+transcript
+work/*
