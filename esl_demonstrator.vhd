@@ -25,7 +25,8 @@ architecture behavior of esl_demonstrator is
   -- Component list
   COMPONENT QuadratureEncoder
     PORT (
-           ab  : IN std_logic_vector(1 DOWNTO 0);    -- Encoder signal
+           a  : IN std_logic;    -- Encoder signal
+           b  : IN std_logic;    -- Encoder signal
            clk : IN std_logic;
            reset : IN std_logic;
            ctr : OUT std_logic_vector(31 DOWNTO 0)  -- Encoder ctr
@@ -43,7 +44,7 @@ architecture behavior of esl_demonstrator is
   SIGNAL clk : std_logic;
   SIGNAL reset : std_logic;
   SIGNAL pulse : std_logic;
-  SIGNAL ab : std_logic_vector(1 DOWNTO 0);
+  SIGNAL a,b : std_logic;
   SIGNAL ctr : std_logic_vector(31 DOWNTO 0);
 
   signal placeholder : std_logic_vector(10 downto 0);
@@ -51,7 +52,7 @@ begin
 	encoder : entity work.QuadratureEncoder
 		port map (
 			-- Map your encoder here to the I/O
-				ab, clk, reset, ctr
+				a, b, clk, reset, ctr
 		);
 		
 	pwm : entity work.PulseWidthModulator
