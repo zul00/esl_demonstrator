@@ -33,31 +33,31 @@ BEGIN
       CASE a_r IS
         WHEN "01" =>    -- rising edge
           IF b = '1' THEN
-            dir(0) <= '1';   -- up
+            dir <= "01";   -- up
           ELSIF b = '0' THEN
-            dir(1) <= '1';   -- down
+            dir <= "10";   -- down
           END IF;
         WHEN "10" =>    -- falling edge
           IF b = '1' THEN
-            dir(1) <= '1';   -- down
+            dir <= "10";   -- down
           ELSIF b = '0' THEN
-            dir(0) <= '1';   -- up
+            dir <= "01";   -- up
           END IF;
-        WHEN OTHERS =>
+        WHEN OTHERS =>  -- no event
       END CASE;
 
       CASE b_r IS
         WHEN "01" =>    -- rising edge
           IF a = '1' THEN
-            dir(1) <= '1';   -- down
+            dir <= "10";   -- down
           ELSIF a = '0' THEN
-            dir(0) <= '1';   -- up
+            dir <= "01";   -- up
           END IF;
         WHEN "10" =>    -- falling edge
           IF a = '1' THEN
-            dir(0) <= '1';   -- up
+            dir <= "01";   -- up
           ELSIF a = '0' THEN
-            dir(1) <= '1';   -- down
+            dir <= "10";   -- down
           END IF;
         WHEN OTHERS =>  -- last check for no event
           IF ((a_r(0) XOR a_r(1)) = '0') THEN
