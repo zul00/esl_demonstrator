@@ -15,7 +15,7 @@ END ENTITY;
 ARCHITECTURE bhv OF QuadratureEncoder IS
   SIGNAL a_r : std_logic_vector(1 DOWNTO 0);
   SIGNAL b_r : std_logic_vector(1 DOWNTO 0);
-  SIGNAL ad : std_logic_vector(1 DOWNTO 0);
+  SIGNAL dir : std_logic_vector(1 DOWNTO 0);
 BEGIN
   event:PROCESS(clk, reset)
   VARIABLE ctr_tmp : signed(ctr'RANGE);
@@ -33,22 +33,40 @@ BEGIN
       CASE a_r IS
         WHEN "01" =>    -- rising edge
           IF b = '1' THEN
-            ad <= "01";   -- up
+            dir(0) <= '1';   -- up
           ELSIF b = '0' THEN
-            ad <= "10";   -- down
+            dir(1) <= '1';   -- down
           END IF;
         WHEN "10" =>    -- falling edge
           IF b = '1' THEN
-            ad <= "10";   -- down
+            dir(1) <= '1';   -- down
           ELSIF b = '0' THEN
-            ad <= "01";   -- up
+            dir(0) <= '1';   -- up
           END IF;
         WHEN OTHERS =>
-          ad <= "00";
+      END CASE;
+
+      CASE b_r IS
+        WHEN "01" =>    -- rising edge
+          IF a = '1' THEN
+            dir(1) <= '1';   -- down
+          ELSIF a = '0' THEN
+            dir(0) <= '1';   -- up
+          END IF;
+        WHEN "10" =>    -- falling edge
+          IF a = '1' THEN
+            dir(0) <= '1';   -- up
+          ELSIF a = '0' THEN
+            dir(1) <= '1';   -- down
+          END IF;
+        WHEN OTHERS =>  -- last check for no event
+          IF ((a_r(0) XOR a_r(1)) = '0') THEN
+            dir <= "00";
+          END IF;
       END CASE;
 
       -- Update counter
-      CASE ad IS
+      CASE dir IS
         WHEN "01" =>  -- up
           ctr_tmp := ctr_tmp + 1;
         WHEN "10" =>  -- down
@@ -56,6 +74,7 @@ BEGIN
         WHEN OTHERS =>
           ctr_tmp := ctr_tmp;
       END CASE;
+
       ctr <= std_logic_vector(ctr_tmp);
     END IF;
   END PROCESS;
