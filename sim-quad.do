@@ -1,4 +1,4 @@
-vsim -t ns work.QuadratureEncoder
+vsim -t 10ns work.QuadratureEncoder
 
 # Add signal
 add wave -position end sim:/quadratureencoder/a
