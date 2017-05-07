@@ -1,8 +1,8 @@
-library ieee;
-use ieee.std_logic_1164.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
 
-entity esl_demonstrator is
-	port (
+ENTITY esl_demonstrator is
+	PORT (
 	-- CLOCK
 	CLOCK_50	: in std_logic;
 	-- LEDs are only available on the DE0 Nano board.
@@ -18,10 +18,10 @@ entity esl_demonstrator is
 	GPIO_1		: inout std_logic_vector(33 downto 0);
 	GPIO_1_IN	: in    std_logic_vector(1 downto 0)
 	);
-end entity;
+END ENTITY;
 
 
-architecture behavior of esl_demonstrator is
+ARCHITECTURE behavior OF esl_demonstrator IS
   -- Component list
   COMPONENT QuadratureEncoder
     PORT (
@@ -49,15 +49,15 @@ architecture behavior of esl_demonstrator is
 
   signal placeholder : std_logic_vector(10 downto 0);
 begin
-	encoder : entity work.QuadratureEncoder
-		port map (
-			-- Map your encoder here to the I/O
+	encoder : ENTITY work.QuadratureEncoder
+		PORT MAP (
+			-- MAP your encoder here to the I/O
 				a, b, clk, reset, ctr
 		);
 		
-	pwm : entity work.PulseWidthModulator
-		port map (
-			-- Map your pulse width modulator here to the I/O
+	pwm : ENTITY work.PulseWidthModulator
+		PORT MAP (
+			-- MAP your pulse width modulator here to the I/O
 				clk, reset, pulse
 		);
 
@@ -66,4 +66,4 @@ begin
     a <= GPIO_0(6);
     b <= GPIO_0(7);
     clk <= CLOCK_50;
-end architecture;
+END ARCHITECTURE;
