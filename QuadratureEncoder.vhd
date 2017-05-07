@@ -8,7 +8,7 @@ ENTITY QuadratureEncoder IS
          b  : IN std_logic;    -- Encoder signal
          clk : IN std_logic;
          reset : IN std_logic;
-         ctr : OUT std_logic_vector(31 DOWNTO 0)  -- Encoder ctr
+         ctr : OUT std_logic_vector(11 DOWNTO 0)  -- Encoder ctr 12 bit
        );
 END ENTITY;
 

@@ -29,7 +29,7 @@ architecture behavior of esl_demonstrator is
            b  : IN std_logic;    -- Encoder signal
            clk : IN std_logic;
            reset : IN std_logic;
-           ctr : OUT std_logic_vector(31 DOWNTO 0)  -- Encoder ctr
+           ctr : OUT std_logic_vector(11 DOWNTO 0)  -- Encoder ctr
          );
   END COMPONENT;
   COMPONENT PulseWidthModulator
@@ -45,7 +45,7 @@ architecture behavior of esl_demonstrator is
   SIGNAL reset : std_logic;
   SIGNAL pulse : std_logic;
   SIGNAL a,b : std_logic;
-  SIGNAL ctr : std_logic_vector(31 DOWNTO 0);
+  SIGNAL ctr : std_logic_vector(11 DOWNTO 0);
 
   signal placeholder : std_logic_vector(10 downto 0);
 begin
