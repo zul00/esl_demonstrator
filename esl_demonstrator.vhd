@@ -60,4 +60,10 @@ begin
 			-- Map your pulse width modulator here to the I/O
 				clk, reset, pulse
 		);
+
+    -- Connect Encoder 0
+    LED <= ctr(7 DOWNTO 0);
+    a <= GPIO_0(6);
+    b <= GPIO_0(7);
+    clk <= CLOCK_50;
 end architecture;
