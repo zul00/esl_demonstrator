@@ -24,13 +24,12 @@ END ENTITY;
 ARCHITECTURE behavior OF esl_demonstrator IS
   -- Component list
   COMPONENT QuadratureEncoder
-    PORT (
-           a  : IN std_logic;    -- Encoder signal
-           b  : IN std_logic;    -- Encoder signal
-           clk : IN std_logic;
-           reset : IN std_logic;
-           ctr : OUT std_logic_vector(11 DOWNTO 0)  -- Encoder ctr
-         );
+    GENERIC (w : positive := 12);
+    PORT (clk : IN std_logic;
+          reset : IN std_logic;
+          a  : IN  std_logic;
+          b : IN std_logic;
+          ctr : OUT std_logic_vector(w-1 DOWNTO 0));
   END COMPONENT;
   COMPONENT PulseWidthModulator
     PORT (
